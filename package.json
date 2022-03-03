@@ -1,0 +1,19 @@
+{
+  "name": "career-dendrogram",
+  "version": "1.0.0",
+  "description": "SIH project by Teri Lee",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sugan0tech/career-dendrogram.git"
+  },
+  "author": "Teri Lee Coders",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sugan0tech/career-dendrogram/issues"
+  },
+  "homepage": "https://github.com/sugan0tech/career-dendrogram#readme"
+}
