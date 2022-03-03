@@ -1,4 +1,3 @@
-const chalk = require("chalk");
 const jwt = require("jsonwebtoken");
 require("dotenv").config()
 
@@ -20,7 +19,7 @@ function verify(token, email) {
         };
     } catch (e) {
         console.log(e)
-        console.log(chalk.red.bold("\n\tError in verify func\n"), chalk.red.bold.inverse("\tlocation: ./functions/token\n"));
+        console.log("\n\tError in verify func\n"), chalk.red.bold.inverse("\tlocation: ./functions/token\n");
 
     }
     return {
