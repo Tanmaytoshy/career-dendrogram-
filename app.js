@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express();
 const mongoose = require("./db");
+const login = require("./apis/login");
 app
 // middle wares
     .use(express.json())
     .use(express.static("./pages"))
     .use(express.urlencoded({ extended: true }))
+    .use(login)
     .get("/", (req, res) => {
         res.status(200).send("");
     })
