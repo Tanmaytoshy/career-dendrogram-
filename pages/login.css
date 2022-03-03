@@ -70,8 +70,8 @@ input{
 button{
     margin-top: 50px;
     width: 100%;
-    background-color: #ffffff;
-    color: #080710;
+    background-color: #339933;
+    color: white;
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
@@ -79,7 +79,7 @@ button{
     cursor: pointer;
 }
 button:hover{
-    background-color: #D1D1D1;
+    background-color: #206020;
   }
 .social{
   margin-top: 30px;
