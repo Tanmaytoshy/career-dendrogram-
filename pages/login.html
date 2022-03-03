@@ -11,21 +11,49 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form>
+    <form id="reg-form">
         <h3><b>Login Here</b></h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username">
+        <input type="text" placeholder="Username" id="username">
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password">
 
-        <button>Log In</button>
+        <button id="submit">Log In</button>
         <div class="social">
             <div class="go"><i class="fab fa-google"></i> Google</div>
             <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
         </div>
     </form>
 </body>
+<script>
+   const form = document.getElementById("reg-form");
+        form.addEventListener("submit", reg);
+
+        async function reg(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value
+            const password = document.getElementById("password").value
+            var d = new Date();
+
+            const result = await fetch('/api/people', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                    Time: d.getTime()
+                })
+            })
+            console.log(username, password)
+
+            var val = document.getElementById("container").innerHTML
+            document.getElementById("container").innerHTML = val + " " + username
+        }
+        
+</script>
 
 </html>
