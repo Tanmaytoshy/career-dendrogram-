@@ -4,7 +4,7 @@ const hash = require("./hash").hash;
 async function push(data) {
     try {
         const valid = await user.exists({ $and: [{ email: data.email }] });
-        console.log(data);
+        console.log(data, valid);
         if (valid == null) {
             data.password = hash(data.password);
             const newUser = new user(data);

@@ -7,7 +7,7 @@ require("dotenv").config();
 
 router
     .use((req, res, callback) => {
-        console.log(chalk.bold.yellow(`\n${req.url}@ ${new Date()}\n`));
+        console.log(`\n${req.url}@ ${new Date()}\n`);
         callback();
     })
     .use(express.json())
