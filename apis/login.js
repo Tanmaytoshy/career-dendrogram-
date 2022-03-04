@@ -36,9 +36,10 @@ router
                 res.redirect(301, "/home");
             } else {
                 res.clearCookie("token");
-                res.redirect(301, "/login");
+                res.redirect(301, "/");
             }
         } else {
+            console.log("req api :", req.body.email, req.body.password);
             func.check(req.body.email, req.body.password).then(
                 (value) => {
                     if (value === false) {
