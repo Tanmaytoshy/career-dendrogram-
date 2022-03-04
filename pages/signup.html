@@ -108,27 +108,27 @@ body {
 		<p class="hint-text">Create your account</p>
         <div class="form-group">
 			<div class="row">
-				<div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
-				<div class="col"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"></div>
+				<div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" id="firstName" required="required"></div>
+				<div class="col"><input type="text" class="form-control" name="last_name" placeholder="Last Name" id="secondName" required="required"></div>
 			</div>        	
         </div>
 
         <div class="form-group">
-        	<input type="email" class="form-control" name="email" placeholder="Email" required="required">
+        	<input type="email" class="form-control" name="email" placeholder="Email" id="email" required="required">
         </div>
         <div class="form-group">
-            <input type="col" class="form-control" name="Fathers name" placeholder="Guardian/Father's name " required="required">
+            <input type="col" class="form-control" name="Fathers name" placeholder="Guardian/Father's name " id="guardianName" required="required">
          </div> 
         <div class="form-group">
         	<p style="color:black;"> Gender:<br>
-        	<input type="radio"  name="gender" value="Male">
+        	<input type="radio"  name="gender" value="Male" id="gender">
             <label for="html">Male</label>&nbsp;&nbsp;&nbsp;
-            <input type="radio"  name="gender" value="Female">
+            <input type="radio"  name="gender" value="Female" id="gender">
             <label for="html">Female</label><br></p>
         </div>
         <div class="form-group">
         	<p style="color:black;">Highest Education level:</p>
-        	<select name="Education" id="Education" class="form-control" >
+        	<select name="Education" id="higherEducation" class="form-control" >
         		<option value="" selected="selected" disabled="disabled">-- select one --</option>
     <option value="No formal education">No formal education</option>
     <option value="Primary education">Primary education</option>
@@ -142,7 +142,7 @@ body {
 </div>
          <div class="form-group">
         	<p style="color:black;">State:</p>
-        	<select name="State" id="State" class="form-control" placeholder="State">
+        	<select name="State" id="state" class="form-control" placeholder="State">
             <option value="Andhra Pradesh">Andhra Pradesh</option>
 <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -188,14 +188,14 @@ body {
 
 		<div class="form-group">
 			<p style="color:black;">Mobile Number:</p>
-            <input type="tel" class="form-control" name="Phone Number" placeholder="10 digit mobile number" >
+            <input type="tel" class="form-control" name="Phone Number" id="mobile" placeholder="10 digit mobile number" >
         </div>
         <div class="form-group">
 			<p style="color:black;">Image Upload:</p>
             <input type="file" class="form-control" class="form-control"  id="myfile" name="filename" >
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control"   name="password" placeholder="Password" required="required">
+            <input type="password" class="form-control"   name="password" id="password" placeholder="Password" required="required">
         </div>  
         <div class="form-group">
             <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
@@ -210,4 +210,44 @@ body {
 	<div class="text-center">Already have an account? <a href="#">Sign in</a></div>
 </div>
 </body>
+<script>
+   const form = document.getElementById("reg-form");
+        form.addEventListener("submit", reg);
+
+        async function reg(event) {
+            event.preventDefault();
+            const firstName = document.getElementById("firstName").value
+            const secondName = document.getElementById("secondName").value
+            const email= document.getElementById("email").value
+            const gender= document.getElementById("gender").value
+            const higherEducation= document.getElementById("higherEducation").value
+            const state= document.getElementById("state").value
+            const mobile= document.getElementById("mobile").value
+            const password = document.getElementById("password").value
+            var d = new Date();
+
+            const result = await fetch('/api/people', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    firstName,
+                    secondName,
+                    email,
+                    gender,
+                    higherEducation,
+                    state,
+                    mobile,
+                    password,
+                    Time: d.getTime()
+                })
+            })
+            console.log(email, password)
+
+            var val = document.getElementById("container").innerHTML
+            document.getElementById("container").innerHTML = val + " " + username
+        }
+        
+</script>
 </html>
