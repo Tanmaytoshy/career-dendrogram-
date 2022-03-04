@@ -4,7 +4,12 @@ const validateEmail = function(email) {
     return re.test(email)
 };
 const userSchema = mongo.Schema({
-    name: {
+    firstName: {
+        type: String,
+        required: true,
+        lowercase: true
+    },
+    secondName: {
         type: String,
         required: true,
         lowercase: true
@@ -16,6 +21,29 @@ const userSchema = mongo.Schema({
         validate: [validateEmail, "pease fill valid mail"],
         trim: true, // trims white spaces from right and left
         unique: true
+    },
+    guardianName: {
+        type: String,
+        required: true,
+        lowercase: true,
+        default: "damodharan"
+    },
+    gender: {
+        type: String,
+        required: true,
+        lowercase: true,
+        default: null
+    },
+    higherEducation: {
+        type: String,
+        required: true,
+        default: "BE"
+    },
+    state: {
+        type: String,
+        required: true,
+        lowercase: true,
+        default: "tamil nadu"
     },
     password: {
         type: String,
@@ -31,37 +59,12 @@ const userSchema = mongo.Schema({
         default: new Date,
         immutable: false,
     },
-    books: {
-        type: [mongo.SchemaTypes.ObjectId],
-        default: [
-            new mongo.Types.ObjectId,
-            new mongo.Types.ObjectId
-        ]
-    },
-
-    assignments: {
-        type: [mongo.SchemaTypes.ObjectId],
-        default: [
-            new mongo.Types.ObjectId,
-            new mongo.Types.ObjectId
-        ]
-    },
-    examTime: {
-        type: [
-            { id: String, title: String, subs: [{ subject: String, date: Date }] }
-        ],
-        default: {
-            id: 'test exam id',
-            title: 'sem exams',
-            subs: [
-                { subject: 'maths', date: new Date },
-                {
-                    subject: 'chemistry',
-                    date: new Date
-                }
-            ]
-        }
+    mobile: {
+        type: String,
+        required: true,
+        default: "8778559307",
     }
+
 
 })
 

@@ -95,5 +95,4 @@ async function getinfo(userMail, userPassword) {
     return false;
 }
 
-
 module.exports = { push, check, update, del, getinfo };
