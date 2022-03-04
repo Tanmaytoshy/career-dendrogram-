@@ -14,46 +14,40 @@
     <form id="reg-form">
         <h3><b>Login Here</b></h3>
 
-        <label for="username">Username</label>
-        <input type="text" placeholder="Username" id="username">
+        <label for="email">Email</label>
+        <input type="email" placeholder="email" id="email">
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password">
 
         <button id="submit">Log In</button>
-        <div class="social">
-            <div class="go"><i class="fab fa-google"></i> Google</div>
-            <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
-        </div>
     </form>
 </body>
 <script>
-   const form = document.getElementById("reg-form");
-        form.addEventListener("submit", reg);
+    const form = document.getElementById("reg-form");
+    form.addEventListener("submit", reg);
 
-        async function reg(event) {
-            event.preventDefault();
-            const username = document.getElementById("username").value
-            const password = document.getElementById("password").value
-            var d = new Date();
+    async function reg(event) {
+        event.preventDefault();
+        const email = document.getElementById("email").value
+        const password = document.getElementById("password").value
+        var d = new Date();
 
-            const result = await fetch('/api/people', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username,
-                    password,
-                    Time: d.getTime()
-                })
+        const result = await fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password,
             })
-            console.log(username, password)
+        })
+        console.log(email, password)
 
-            var val = document.getElementById("container").innerHTML
-            document.getElementById("container").innerHTML = val + " " + username
-        }
-        
+        var val = document.getElementById("container").innerHTML
+        document.getElementById("container").innerHTML = val + " " + username
+    }
 </script>
 
 </html>
