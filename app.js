@@ -24,5 +24,12 @@ app
         res.sendFile((path.resolve(__dirname + "/pages/home.html")))
         res.status(200);
     })
+    .get("/selector", (req, res) => {
+        res.sendFile((path.resolve(__dirname + "/pages/selector.html")))
+        res.status(200);
+    })
+    .get("*", (req, res) => {
+        res.status(401).send('unathorised');
+    })
 
 app.listen(5000, () => { console.log("listening on port 5000") });
