@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const cors = require("cors");
 const mongoose = require("./db");
@@ -18,7 +19,11 @@ app
     .use("/register", register)
     .use("/logout", logout)
     .get("/", (req, res) => {
-        res.status(200).send("");
+        res.status(200).sendFile("./pages/index.html");
+    })
+    .get("/home", (req, res) => {
+        res.sendFile((path.resolve(__dirname + "/pages/home.html")))
+        res.status(200);
     })
 
 app.listen(5000, () => { console.log("listening on port 5000") });
