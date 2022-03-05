@@ -34,10 +34,10 @@ router
                 tokenVerificationData.valid
             );
             if (tokenVerificationData.valid) {
-                res.redirect(301, "/home");
+                res.redirect("/home");
             } else {
                 res.clearCookie("token");
-                res.redirect(301, "/home");
+                res.redirect("/home");
             }
         } else {
             console.log("req api :", req.body.email, req.body.password);
@@ -58,7 +58,7 @@ router
                         res.cookie("email", req.body.email, {
                             maxAge: 30 * 24 * 60 * 60 * 1000,
                         });
-                        res.send("user found");
+                        res.redirect(301, "/home");
                     }
                 },
                 (err) => {

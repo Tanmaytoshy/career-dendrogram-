@@ -7,7 +7,6 @@ const login = require("./apis/login");
 const register = require("./apis/register");
 const logout = require("./apis/logout");
 app
-// middle     .use(
     .use(cors({
         credentials: true,
         origin: "http://localhost:5000",
