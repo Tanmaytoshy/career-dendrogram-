@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const func = require("../auth");
 const tok = require("../token");
+const path = require("path");
 
 // middle wares
 router
@@ -16,7 +17,7 @@ router
     .route("/")
     .get((req, res) => {
         console.log("\n    register get request    \n");
-        res.status(200).send("register page");
+        res.status(200).sendFile(path.resolve(__dirname + "/../pages/signup.html"));
     })
     .post((req, res) => {
         console.log("\n    register post request    \n");
