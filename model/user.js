@@ -24,19 +24,16 @@ const userSchema = mongo.Schema({
     },
     guardianName: {
         type: String,
-        required: true,
         lowercase: true,
         default: "damodharan"
     },
     gender: {
         type: String,
-        required: true,
         lowercase: true,
-        default: null
+        default: "other"
     },
     higherEducation: {
         type: String,
-        required: true,
         default: "BE"
     },
     state: {
@@ -63,6 +60,10 @@ const userSchema = mongo.Schema({
         type: String,
         required: true,
         default: "8778559307",
+    },
+    suggested_career: {
+        type: String,
+        default: "BE CSE"
     }
 
 
