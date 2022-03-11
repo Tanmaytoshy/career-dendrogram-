@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const router = express.Router();
 const func = require("../auth");
 const cookieParser = require("cookie-parser");
@@ -17,8 +18,8 @@ router
 router
     .route("/")
     .get((req, res) => {
-        console.log("\n    login get request    \n");
-        res.send("login page");
+        console.log("\n    login gewt request    \n");
+        res.status(200).sendFile(path.resolve(__dirname + "/../pages/login.html"));
     })
     .post((req, res) => {
         if (req.cookies.token != null) {
@@ -33,10 +34,10 @@ router
                 tokenVerificationData.valid
             );
             if (tokenVerificationData.valid) {
-                res.redirect(301, "/home");
+                res.redirect("/home");
             } else {
                 res.clearCookie("token");
-                res.redirect(301, "/");
+                res.redirect("/home");
             }
         } else {
             console.log("req api :", req.body.email, req.body.password);
@@ -57,7 +58,7 @@ router
                         res.cookie("email", req.body.email, {
                             maxAge: 30 * 24 * 60 * 60 * 1000,
                         });
-                        res.send("user found");
+                        res.redirect(301, "/home");
                     }
                 },
                 (err) => {
